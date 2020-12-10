@@ -1,0 +1,9 @@
+.DS_Store
+
+.vscode/*
+__pycache__/*
+api.key
+lib/*
+bin/*
+include/*
+pyvenv.cfg

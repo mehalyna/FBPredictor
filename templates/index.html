@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block main %}
+<h1>Welcome to Predictor ⚽️ ! </h1> <br>
+<div style="margin-bottom: 20px;" id='league_info'>
+  <img style="max-height: 300px;" id='league_logo' src="https://media.api-football.com/leagues/4.svg" alt="League logo">
+</div>
+{% for fixture in fixtures%}
+<div class="container fixture-border" >
+  <div class="row">
+    <div class="col-sm">
+      <img class="" src="{{fixture['home_logo']}}" alt=" Home Team Logo">
+      <br>{{fixture["homeTeam"]}}
+    </div>
+    <div style="display: flex;" class="col-sm-2">
+      <p style="margin: auto;">VS.</p>
+    </div>
+    <div class="col-sm">
+      <img class="" src="{{fixture['away_logo']}}" alt=" Away Team Logo">
+      <br>{{fixture['awayTeam']}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm">
+      <span style="font-size: 70%;">
+        {{fixture['event_date']}}
+      {% if fixture["venue"] != None %}
+      <br> Stadium : {{fixture['venue']}}
+      {% endif %}
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div style="margin: 4px;" class="col-sm">
+      <form action="/placebet" method="post" id="form_bet{{fixture['fixture_id']}}">
+        <input hidden='true' name="id" value="{{fixture['fixture_id']}}"/>
+      </form >
+      <button class="btn btn-success" type="submit" form="form_bet{{fixture['fixture_id']}}">Place bet</button>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+
+
+</table>
+
+{% endblock %}
